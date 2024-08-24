@@ -1,0 +1,31 @@
+body {
+	text-align: center;
+}
+
+table, tr, td, th {
+	margin-right: auto;
+	margin-left: auto;
+
+	border: 1px solid gray;
+	border-collapse: collapse;
+	padding: 5px 10px;
+
+	text-align: center;
+}
+
+a,
+a:focus,
+a:hover {
+	color: rgb(0, 123, 255);
+	text-decoration: none;
+}
+
+h4 {
+	display: inline-block;
+	margin: 10px 10px;
+}
+
+a h2 {
+	display: inline-block;
+	margin: 10px 10px;
+}
