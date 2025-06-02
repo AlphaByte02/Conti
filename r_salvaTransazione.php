@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if (!empty($_POST["importo"]) && $_POST["importo"] !== "0") {
+	if (!empty($_POST["importo"]) && (float)($_POST["importo"]) != 0) {
 		include_once("db.php");
 
 		$res = $db->query("SELECT id FROM nomi");
@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				$soggetti[] = $row["id"];
 		}
 
-		if (count($soggetti) > 0 && !(count($soggetti) == 1 && $soggetti[0] == $_POST["pagante"])) {
+		if (count($soggetti) > 0) {
 			$res = $db->query("INSERT INTO transazioni(id_pagante, importo, causale) VALUES ($_POST[pagante], $_POST[importo], " . (empty($_POST["causale"]) ? "NULL" : "'$_POST[causale]'") . ")");
 			if ($res !== false) {
 				$id_transazione = $db->lastInsertId();

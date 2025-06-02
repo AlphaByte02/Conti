@@ -8,6 +8,7 @@
 
 	<title>Riepilogo Conti Finali</title>
 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 	<link href="style.css" rel="stylesheet">
 </head>
 
@@ -23,6 +24,10 @@
 	<a href="riepilogoConti.php">
 		<h4>Guarda il Riepilogo dei conti</h4>
 	</a>
+	<a href="riepilogoContiFinaliCross.php">
+		<h4>Guarda il Riepilogo dei conti finali (cross)</h4>
+	</a>
+	<div class="container w-50">
 	<?php
 	include_once("db.php");
 
@@ -78,7 +83,7 @@
 	$lastname = "";
 	$res = $db->query($query);
 	if ($res !== null && $res->rowCount() > 0) {
-		echo "<table>";
+		echo "<table class='table'>";
 		echo "<thead><tr><th>Debitore</th><th>Creditore</th><th>Saldo (€)</th></tr></thead>";
 		echo "<tbody>";
 		while ($row = $res->fetch()) {
@@ -96,6 +101,7 @@
 		echo "<h3>Nessuna transazione effettuta! Falla ora <a href='index.php'>qui</a></h3>";
 
 	?>
+	</div>
 </body>
 
 </html>

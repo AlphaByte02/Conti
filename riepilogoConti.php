@@ -8,6 +8,7 @@
 
 	<title>Riepilogo Conti</title>
 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 	<link href="style.css" rel="stylesheet">
 </head>
 
@@ -23,6 +24,7 @@
 	<a href="riepilogoContiFinali.php">
 		<h4>Guarda il Riepilogo dei conti finali</h4>
 	</a>
+	<div class="container w-50">
 	<?php
 	include_once("db.php");
 
@@ -74,7 +76,7 @@
 				$somme = [];
 				$lastname = $row["debitore"];
 
-				echo "<table>";
+				echo "<table class='table caption-top'>";
 				echo "<caption><b>$row[debitore]</b></caption>";
 				echo "<thead><tr><th>Pagante</th><th>Quanto (€)</th><th>Causale</th></tr></thead>";
 				echo "<tbody>";
@@ -85,11 +87,17 @@
 			echo "</tr>";
 			$somme[$row["creditore"]]["spesa"] = (isset($somme[$row["creditore"]]) ? $somme[$row["creditore"]]["spesa"] : 0) + $row["spesa"];
 		}
+		echo "<tr><th>-</th><td>-</td><td>-</td></tr>";
+		foreach ($somme as $pagante => $somma) {
+			echo "<tr><th>TOT $pagante</th><td colspan='2'>" . sprintf('%0.2f', $somma["spesa"]) . "</td></tr>";
+		}
+		echo "</tbody>";
+		echo "</table>";
 	} else {
 		echo "<h3>Nessuna transazione effettuta! Falla ora <a href='index.php'>qui</a></h3>";
 	}
-
 	?>
+	</div>
 </body>
 
 </html>

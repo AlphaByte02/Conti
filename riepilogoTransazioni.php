@@ -8,6 +8,7 @@
 
 	<title>Riepilogo Transazioni</title>
 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 	<link href="style.css" rel="stylesheet">
 </head>
 
@@ -15,7 +16,8 @@
 	<h1>Riepilogo Transazioni</h1>
 	<a href="index.php">
 		<h4>Inserisci altri dati</h4>
-	</a> <a href="riepilogoConti.php">
+	</a>
+	<a href="riepilogoConti.php">
 		<h4>Guarda il Riepilogo dei Conti</h4>
 	</a>
 	<?php
@@ -39,23 +41,39 @@
 			ORDER BY
 				t.id";
 
-	$res = $db->query($query);
 
-	if ($res != null && $res->rowCount() > 0) {
-		echo "<table>";
-		echo "<thead><tr><th>ID Transazione</th><th>Pagante</th><th>N°</th><th>Importo (€)</th><th>Causale</th></tr></thead>";
-		echo "<tbody>";
-		while ($trans = $res->fetch()) {
-			echo "<tr>";
-			echo "<td>$trans[id]</td><td>$trans[pagante]</td><td>$trans[numero_persone]</td><td>" . sprintf('%0.2f', $trans["importo"]) . "</td><td>" . (empty($trans["causale"]) ? "-" : $trans["causale"]) . "</td>";
-			echo "</tr>";
-		}
-		echo "</tbody>";
-		echo "</table>";
-		echo "<br/><br/>";
-	} else
-		echo "<h3>Nessuna transazione effettuta! Falla ora <a href='index.php'>qui</a></h3>";
+	$somma = 0;
+
+	$res = $db->query($query);
 	?>
+
+	<div class="container w-50">
+	<?php if ($res != null && $res->rowCount() > 0) : ?>
+		<table class="table">
+			<thead><tr><th>ID Transazione</th><th>Pagante</th><th>N°</th><th>Importo (€)</th><th>Causale</th></tr></thead>
+			<tbody>
+				<?php while ($trans = $res->fetch()) : ?>
+				<tr>
+					<td><?= $trans["id"] ?></td>
+					<td><?= $trans["pagante"] ?></td>
+					<td><?= $trans["numero_persone"] ?></td>
+					<td><?= sprintf('%0.2f', $trans["importo"]) ?></td>
+					<td><?= empty($trans["causale"]) ? "-" : $trans["causale"] ?></td>
+				</tr>
+				<?php
+					if ($trans["numero_persone"] > 1) {
+						$somma += $trans["importo"];
+					}
+				?>
+				<?php endwhile; ?>
+				<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+				<tr><td colspan='2'>Somma</td><td>-</td><td> <?= sprintf('%0.2f', $somma) ?> </td><td>-</td></tr>
+			</tbody>
+		</table>
+		<? else: ?>
+		<h3>Nessuna transazione effettuta! Falla ora <a href='index.php'>qui</a></h3>
+		<? endif; ?>
+	</div>
 </body>
 
 </html>

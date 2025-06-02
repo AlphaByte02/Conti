@@ -2,17 +2,6 @@ body {
 	text-align: center;
 }
 
-table, tr, td, th {
-	margin-right: auto;
-	margin-left: auto;
-
-	border: 1px solid gray;
-	border-collapse: collapse;
-	padding: 5px 10px;
-
-	text-align: center;
-}
-
 a,
 a:focus,
 a:hover {
