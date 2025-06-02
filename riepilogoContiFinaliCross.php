@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<h1>Riepilogo Conti Finali</h1>
+	<h1>Riepilogo Conti Finali Cross</h1>
 	<a href="index.php">
 		<h4>Inserisci altri dati</h4>
 	</a>
@@ -149,7 +149,7 @@
 	} else {
 		$lastname = "";
 
-		echo "<table class='table'>";
+		echo "<table class='table table-bordered'>";
 		echo "<thead><tr><th>Debitore</th><th>Creditore</th><th>Saldo (€)</th></tr></thead>";
 		echo "<tbody>";
 		foreach ($settlements as $row) {

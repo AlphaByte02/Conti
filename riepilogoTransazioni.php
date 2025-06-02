@@ -49,7 +49,7 @@
 
 	<div class="container w-50">
 	<?php if ($res != null && $res->rowCount() > 0) : ?>
-		<table class="table">
+		<table class="table table-bordered">
 			<thead><tr><th>ID Transazione</th><th>Pagante</th><th>N°</th><th>Importo (€)</th><th>Causale</th></tr></thead>
 			<tbody>
 				<?php while ($trans = $res->fetch()) : ?>

@@ -83,7 +83,7 @@
 	$lastname = "";
 	$res = $db->query($query);
 	if ($res !== null && $res->rowCount() > 0) {
-		echo "<table class='table'>";
+		echo "<table class='table table-bordered'>";
 		echo "<thead><tr><th>Debitore</th><th>Creditore</th><th>Saldo (€)</th></tr></thead>";
 		echo "<tbody>";
 		while ($row = $res->fetch()) {

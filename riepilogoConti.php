@@ -76,7 +76,7 @@
 				$somme = [];
 				$lastname = $row["debitore"];
 
-				echo "<table class='table caption-top'>";
+				echo "<table class='table caption-top table-bordered'>";
 				echo "<caption><b>$row[debitore]</b></caption>";
 				echo "<thead><tr><th>Pagante</th><th>Quanto (€)</th><th>Causale</th></tr></thead>";
 				echo "<tbody>";
